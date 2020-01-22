@@ -1,0 +1,45 @@
+page-login {
+ion-content {
+  background-position : center;
+  background-size: cover;
+}
+.logo{
+  height: 6rem;
+}
+
+.padding5rem-2rem{
+  padding : 5rem 2rem !important;
+}
+
+
+.v-center{
+   height: 100%;
+   display: block;
+   vertical-align: middle;
+}
+ ion-row {
+   align-items: center;
+   text-align: center;
+ }
+
+ ion-item {
+  background-color: transparent !important;
+  padding-left: 0px !important;
+  color: #e0e0e0 !important;
+  font-size: 1.4rem !important;
+ }
+
+ ion-list {
+   margin: 0;
+ }
+
+.item-input .label-md,
+.item-select .label-md,
+.item-datetime .label-md {
+  color: #e0e0e0 !important;
+}
+.mt-80{
+  margin-top: 80px;
+}
+
+}

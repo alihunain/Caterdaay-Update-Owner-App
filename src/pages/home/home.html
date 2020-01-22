@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  
+  <ion-row class="homeMainRows">
+    <ion-slides pager initialSlide="1">
+      <ion-slide>
+        <ion-row text-center>
+          <ion-col col-12 text-center>
+            <div class="circle bg-success"><span>{{orders.yesterday}}</span></div>
+            <h4>Yesterday order</h4>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+      <ion-slide>
+        <ion-row text-center>
+          <ion-col col-12 text-center>
+            <div class="circle bg-success"><span>{{orders.today}}</span></div>
+            <h4>Today order</h4>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+      <ion-slide>
+        <ion-row text-center>
+          <ion-col col-12 text-center>
+            <div class="circle bg-success"><span>{{orders.tomarrow}}</span></div>
+            <h4>Tomorrow order</h4>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+    </ion-slides> 
+  </ion-row>
+
+  <ion-row class="homeMainRows">
+    <ion-col col-12 text-center>
+      <div class="circle bg-success"><span>{{orders.weekly}}</span></div>
+      <h4>Weekly order</h4>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row class="homeMainRows">
+    <ion-col col-12 text-center>
+      <div class="circle bg-success"><span>{{orders.total}}</span></div>
+      <h4>Total order</h4>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

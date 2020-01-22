@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons start float-right>
+      <button ion-button icon-only  (click)="dismiss()">
+        Cancel
+      </button>
+    </ion-buttons>
+    <ion-title>Filter</ion-title>
+  
+    
+   
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding-no>
+  <!-- <ion-list radio-group [(ngModel)]="viewType">
+    <ion-list-header no-margin>
+      View
+    </ion-list-header>
+      <ion-item>
+        <ion-label>Ascending</ion-label>
+        <ion-radio value="ascending"></ion-radio>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Descending</ion-label>
+        <ion-radio value="descending"></ion-radio>
+      </ion-item>
+  </ion-list> -->
+  <!-- <ion-list radio-group [(ngModel)]="paymentType" (ionChange) = "choose('paymentType')">
+    <ion-list-header no-margin>
+      Choose Payment Type
+    </ion-list-header> -->
+  
+    <!-- <ion-item>
+      <ion-label>Any</ion-label>
+      <ion-radio value="any" ></ion-radio>
+    </ion-item> -->
+  
+    <!-- <ion-item>
+      <ion-label>Cash</ion-label>
+      <ion-radio value="cash"></ion-radio>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Card</ion-label>
+      <ion-radio value="card"></ion-radio>
+    </ion-item>
+  </ion-list> -->
+
+
+
+  <ion-list radio-group [(ngModel)]="statusType" (ionChange) = "choose('statusType')">
+    <ion-list-header no-margin>
+      Choose Status
+    </ion-list-header>
+  
+    <!-- <ion-item>
+      <ion-label>Any</ion-label>
+      <ion-radio value="any" ></ion-radio>
+    </ion-item> -->
+    <ion-item>
+      <ion-label>Received</ion-label>
+      <ion-radio value="received"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Accepted</ion-label>
+      <ion-radio value="accepted"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rejected</ion-label>
+      <ion-radio value="rejected"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Driver Accepted</ion-label>
+      <ion-radio value="driveraccepted"></ion-radio>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>No Driver Accepted Yet</ion-label>
+      <ion-radio value="driverrejected"></ion-radio>
+    </ion-item> -->
+    <ion-item>
+      <ion-label>Order on the Way</ion-label>
+      <ion-radio value="ontheway"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Delivered</ion-label>
+      <ion-radio value="delivered"></ion-radio>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>
+
+<ion-footer no-shadow >
+  <ion-toolbar position="bottom">
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col col-6 no-padding>
+          <button padding ion-button  full color="light" position="bottom"  icon-only (click)="doFilter('reset')">Reset</button>
+        </ion-col>
+        <ion-col col-6 no-padding>
+          <button padding ion-button position="bottom" full color="secondary" icon-only (click)="doFilter('apply')">Apply</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
+

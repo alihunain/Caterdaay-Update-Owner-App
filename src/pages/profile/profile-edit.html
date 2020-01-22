@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Edit Profile</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+    <ion-row class="profile-area borderb-1">
+        <ion-col col-12 text-center>
+            <img style="object-fit:cover" class="profile-img rounded-circle" [src]="ownerImage(owner.image)">
+            <br>
+            <!-- <button ion-button color="secondary" small outline class="mt-4">Change</button> -->
+        </ion-col>
+    </ion-row>
+    <ion-list>
+	<form [formGroup]="editForm" (ngSubmit)="profileUpdate()" >
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" formControlName="username" disabled></ion-input>
+        </ion-item>
+        <div *ngIf="formErrors && formErrors.username" margin-horizontal class="alert alert-danger mt-3">
+            {{ formErrors.username }}
+        </div>
+        <ion-item>
+            <ion-label floating>First Name</ion-label>
+            <ion-input type="text" formControlName="ownerfirstname"></ion-input>
+        </ion-item>
+        <div *ngIf="formErrors && formErrors.ownerfirstname" margin-horizontal class="alert alert-danger mt-3 ">
+            {{ formErrors.ownerfirstname }}
+        </div>
+        <ion-item>
+            <ion-label floating>Last Name</ion-label>
+            <ion-input type="text" formControlName="ownerlastname"></ion-input>
+        </ion-item>
+        <div *ngIf="formErrors && formErrors.ownerlastname" margin-horizontal class="alert alert-danger mt-3">
+            {{ formErrors.ownerlastname }}
+        </div>
+        <ion-item>
+            <ion-label floating>Eamil</ion-label>
+            <ion-input type="text" formControlName="email" disabled></ion-input>
+        </ion-item>
+        <div *ngIf="formErrors && formErrors.email" margin-horizontal class="alert alert-danger mt-3">
+            {{ formErrors.email }}
+        </div>
+        <ion-item>
+            <ion-label floating>Mobile No.</ion-label>
+            <ion-input type="text" formControlName="ownerphoneno" ></ion-input>
+        </ion-item>
+        <div *ngIf="formErrors && formErrors.ownerphoneno" margin-horizontal class="alert alert-danger mt-3">
+            {{ formErrors.ownerphoneno }}
+        </div>
+        <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-textarea  rows="4" formControlName="owneraddress"></ion-textarea>
+        </ion-item>
+        <ion-col >
+            <div id="editmap" class="mb-4" style="width:100%;height:200px;background:gainsboro"></div>
+        </ion-col>
+        <button ion-button color="secondary" class="bottom-fixed" full [disabled]="!editForm.valid">Save</button>
+</form>
+    </ion-list>
+</ion-content>

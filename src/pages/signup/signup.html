@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding scrollbar-y="false"  [ngStyle]="{'background-image': 'url(assets/imgs/bg.jpg)'}">
+
+  <div padding class="mt-2" *ngIf="passwordp" >
+
+    <ion-row>
+      <ion-col>
+        <img src="assets/imgs/bgLogoM.png" class="logo h-center ">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-list no-margin>
+
+          <form role="form" class="list"  [formGroup]="signupForm" (ngSubmit)="doSignup()" >
+          <!-- <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" formControlName="username"></ion-input> 
+          </ion-item>
+          <div *ngIf="formErrors.username" class="alert alert-danger mt-2">
+            {{ formErrors.username }}
+          </div> -->
+            <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input type="text" formControlName="email" ></ion-input>
+            </ion-item>
+            <div *ngIf="formErrors.email" class="alert alert-danger mt-2">
+            {{ formErrors.email }}
+            </div>
+            <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <div *ngIf="formErrors.password" class="alert alert-danger mt-2">
+              {{ formErrors.password }}
+            </div>
+            <ion-item>
+              <ion-label floating>Confirm password</ion-label>
+              <ion-input type="password" formControlName="cpassword"></ion-input>
+            </ion-item>
+            <div *ngIf="matchPassword" class="alert alert-danger mt-2">
+              Password does not match.
+            </div>
+            <button  class="mt-3" ion-button full color="secondary"  [disabled]="!signupForm.valid">Sign Up</button>
+          </form>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center>
+        <a class="text-light" (click)="goToLoginPage()">Login</a>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

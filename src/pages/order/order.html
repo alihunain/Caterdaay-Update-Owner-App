@@ -1,0 +1,143 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle start>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Orders</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only style="font-size: 1rem;" (click)="openFilter()">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top color="secondary">
+  
+    <ion-segment [(ngModel)]="type" color="light">
+      <ion-segment-button value="all">
+        All orders
+      </ion-segment-button>
+      <ion-segment-button value="today">
+        Today's orders
+      </ion-segment-button>
+      <ion-segment-button value="customer">
+        Customer
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content no-padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'all'">
+
+      <ion-item  *ngFor="let order of orders; index as i" (click)="openDetail(i)">
+        <h2><ion-icon name="pizza"></ion-icon> &nbsp; #{{order._id.substr(18,6)}}</h2>
+
+        <ion-row class="whiteSpaceInitial">Total Amount : &nbsp; <strong><span *ngIf = "order.currency">{{order.currency}} </span>{{order.total | number : '1.2-2'}}</strong> </ion-row>
+<!-- 
+        <ion-row *ngIf="order.status == 'received' && order.paymenttype == 'cash' "><strong text-capitalize> Order Placed </strong></ion-row> -->
+
+        <ion-row *ngIf="order.status == 'received' "><strong text-capitalize> Payment Received </strong></ion-row>
+        <ion-row *ngIf="order.status == 'accepted'"><strong text-capitalize>Preparing Order</strong></ion-row>
+        <ion-row *ngIf="order.status == 'rejected'"><strong text-capitalize>Order Rejected</strong></ion-row>
+        <ion-row *ngIf="order.status == 'ontheway'"><strong text-capitalize>On the way</strong></ion-row>
+        <ion-row *ngIf="order.status == 'delivered'"><strong text-capitalize>Delivered</strong></ion-row>
+        <ion-row *ngIf="order.status == 'driveraccepted'"><strong  text-capitalize>Driver Accepted</strong></ion-row>
+        <!-- <ion-row *ngIf="order.status == 'rejected'"><strong text-capitalize>Order Rejected</strong></ion-row> -->
+
+        <!-- <ion-row *ngIf="order.status == 'completed' || order.status == 'driverrejected'">
+          <ion-col *ngIf="order.ordertype == 'home'" col-12><strong text-capitalize>Order Prepared </strong> (Waiting for Driver!)</ion-col> -->
+          <!-- <ion-col col-12 style = "padding: 0 16px 5px;"></ion-col> -->
+          <!-- <ion-col *ngIf="order.ordertype == 'pick'" col-12><strong text-capitalize>Order Prepared </strong> (Waiting to customer!)</ion-col> -->
+            <!-- <ion-col col-12 style = "padding: 0 16px 5px;"></ion-col> -->
+        <!-- </ion-row> -->
+
+     
+
+        <!-- <ion-row *ngIf="order.status == 'delivered'"><strong text-capitalize>Delivered</strong></ion-row>
+
+        <ion-row *ngIf="order.status == 'cancelled'"><strong text-capitalize>Order Cancelled</strong></ion-row> -->
+        <ion-row>
+          <ion-icon name="time"></ion-icon> &nbsp; {{order.ordertiming.create| date:'medium'}}
+        </ion-row>
+        
+        <!-- <button ion-button clear item-end color="secondary">View</button> -->
+
+      </ion-item>
+      <ion-item *ngIf="orders  && orders.length  == 0">
+        No Record Found
+      </ion-item>
+    </ion-list>
+    
+    <ion-list *ngSwitchCase="'today'">
+      <ion-item *ngFor="let todayOrder of todayOrders; index as i" (click)="openDetail(i)">
+        <h2><ion-icon name="pizza"></ion-icon> &nbsp; #{{todayOrder._id.substr(18,6)}}</h2>
+
+        <ion-row class="whiteSpaceInitial">Total Amount : &nbsp; <strong><span *ngIf = "todayOrder.currency">{{todayOrder.currency}} </span>{{todayOrder.total | number : '1.2-2'}}</strong> </ion-row>
+<!-- 
+        <ion-row *ngIf="todayOrder.status == 'received' && todayOrder.paymenttype == 'cash' "><strong text-capitalize> Order Placed </strong></ion-row> -->
+        <ion-row *ngIf="todayOrder.status == 'received'  "><strong text-capitalize> Payment Received </strong></ion-row>
+        <ion-row *ngIf="todayOrder.status == 'accepted'"><strong text-capitalize>Preparing Order</strong></ion-row>
+        <ion-row *ngIf="todayOrder.status == 'rejected'"><strong text-capitalize>Order Rejected</strong></ion-row>
+        <ion-row *ngIf="todayOrder.status == 'driveraccepted'"><strong  text-capitalize>Driver Accepted</strong></ion-row>
+<ion-row *ngIf="todayOrder.status == 'ontheway'"><strong  text-capitalize>On the way</strong></ion-row>
+        <ion-row *ngIf="todayOrder.status == 'delivered'"><strong text-capitalize>Delivered</strong></ion-row>
+      
+
+
+
+        <!-- <ion-row *ngIf="todayOrder.status == 'completed' || todayOrder.status == 'driverrejected'">
+          <ion-col *ngIf="todayOrder.ordertype == 'home'" col-12><strong text-capitalize>Order Prepared </strong> (Waiting for Driver!)</ion-col> -->
+          <!-- <ion-col col-12 style = "padding: 0 16px 5px;"></ion-col> -->
+          <!-- <ion-col *ngIf="todayOrder.ordertype == 'pick'" col-12><strong text-capitalize>Order Prepared </strong> (Waiting for customer !)</ion-col>
+        </ion-row> -->
+        
+
+        <ion-row *ngIf="todayOrder.status == 'driveraccepted'"><strong *ngIf="todayOrder.ordertype == 'home'" text-capitalize>Driver is On the Way</strong><strong *ngIf="todayOrder.ordertype == 'pick'" text-capitalize>Customer is On the Way</strong></ion-row>
+
+        <ion-row *ngIf="todayOrder.status == 'delivered'"><strong text-capitalize>Delivered</strong></ion-row>
+
+        <!-- <ion-row *ngIf="todayOrder.status == 'cancelled'"><strong text-capitalize>Order Cancelled</strong></ion-row> -->
+
+        <ion-row>
+          <ion-icon name="time"></ion-icon> &nbsp; {{todayOrder.ordertiming.create| date:'medium'}}
+        </ion-row>
+        
+        <!-- <button ion-button clear item-end color="secondary">View</button> -->
+
+
+      </ion-item>
+      <ion-item *ngIf="todayOrders  && todayOrders.length  == 0">
+        No Record Found
+      </ion-item>
+    </ion-list>
+    
+    <ion-list *ngSwitchCase="'customer'">
+      <ion-item *ngFor="let customersOrder of customersOrders ; index as i" (click)="goToCustomerOrderDetail(i)">
+        <ion-avatar item-start>
+          <img style="object-fit:cover" [src]="customerImage(customersOrder.profilePic)">
+        </ion-avatar>
+        <h2 *ngIf = "customersOrder.firstname">{{customersOrder.firstname}}</h2>
+        <h2 *ngIf = "customersOrder.firstname == undefined || customersOrder.firstname == null">{{customersOrder.email}}</h2>
+        <!-- <button ion-button clear item-end color="secondary">View</button> -->
+      </ion-item>
+
+    </ion-list>
+
+  </div>
+
+
+</ion-content>

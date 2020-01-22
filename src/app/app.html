@@ -1,0 +1,31 @@
+<ion-menu [content]="content">
+  <ion-header >
+    <ion-toolbar color="secondary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list no-lines>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      
+      </button>
+      <!-- <button menuClose ion-item (click)="doLogout()">
+        Logout
+      </button> -->
+      
+    </ion-list> 
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+<ion-row *ngIf = "noConnection" class="noconnection" (tap)="retry($event)">
+  <ion-col no-padding col-12 text-center>
+    <ion-icon name ="refresh" ios="ios-refresh" md="md-refresh"></ion-icon>
+  </ion-col>
+  <ion-col no-padding col-12 text-center>Tap to Reload</ion-col>
+</ion-row>

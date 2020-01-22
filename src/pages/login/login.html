@@ -1,0 +1,37 @@
+<ion-content padding [ngStyle]="{'background-image': 'url(assets/imgs/bg.jpg)'}">
+
+  <ion-row>
+    <ion-col col-12 class="padding5rem-2rem">
+      <img src="assets/imgs/MealDaay-small.png" class="logo">
+    </ion-col>
+  </ion-row>
+
+  <ion-list no-margin>
+    <form role="form" [formGroup]="loginForm" (ngSubmit)="doLogin()">
+    <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input autocapitalize="off" type="text" formControlName="username"></ion-input>
+    </ion-item>
+    <div *ngIf="formErrors.username" class="alert alert-danger mt-2">
+      {{ formErrors.username }}
+    </div>
+    <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item> 
+    <div *ngIf="formErrors.password" class="alert alert-danger mt-2">
+      {{ formErrors.password }}
+    </div>
+    <button ion-button full class="mt-3 themeGreenBg" [disabled]="!loginForm.valid">Login</button>
+    </form>
+  </ion-list>
+
+  <ion-row>
+    <ion-col col-12 text-center>      
+      <a  class="text-light" no-padding padding-horizontal (click)="goToFogetPage()">Forgot Password?</a>
+    </ion-col>
+    <!-- <ion-col col-4 text-right>
+      <a  class="text-light" no-padding padding-horizontal (click)="goToSignupPage()">Sign up</a>
+    </ion-col> -->
+  </ion-row>
+</ion-content>

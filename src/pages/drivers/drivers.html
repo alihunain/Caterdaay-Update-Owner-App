@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Drivers</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+    <button ion-button color="secondary" full (click)="goToLocationPage()">Show drivers locations</button>
+    <ion-list *ngIf = "drivers">
+        <ion-item *ngFor = "let driver of drivers">
+            <ion-avatar item-start>
+                <img style="object-fit: cover;" [src]="driverImage(driver.image)">
+            </ion-avatar>
+            <h2 text-capitalize><strong>{{driver.firstname}} {{driver.lastname}}</strong></h2>
+            <h3 *ngIf = "driver.vehicleType" text-capitalize>{{driver.vehicleType}}</h3>
+            <h3 text-capitalize> <span *ngIf = "driver.vehicleName"> {{driver.vehicleName}} </span> <span *ngIf = "driver.vehicleNo">- {{driver.vehicleNo}}</span></h3>
+        </ion-item>
+    </ion-list>
+</ion-content>

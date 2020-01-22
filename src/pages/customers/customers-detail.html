@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Customer Detail</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+
+    <ion-row>
+        <ion-col col-12 text-center>
+            <img style="object-fit:cover" class="profile-img rounded-circle" [src]="customerImage(customerDetail.profilePic)">
+        </ion-col>
+    </ion-row>
+  
+    <ion-list class="mb-0">
+        <ion-item *ngIf = "customerDetail.firstname" class="text-muted text-capitize">
+            <ion-icon name="person" item-start></ion-icon>
+            {{customerDetail.firstname}} {{customerDetail.lastname}}
+        </ion-item>
+        <ion-item class="text-muted">
+            <ion-icon name="mail" item-start></ion-icon>
+             {{customerDetail.email}}
+        </ion-item>
+        <ion-item *ngIf = "customerDetail.cellphone" class="text-muted">
+            <ion-icon name="call" item-start></ion-icon>
+             {{customerDetail.cellphone}}
+        </ion-item>
+        <ion-item *ngIf = "customerDetail.homephone" class="text-muted">
+            <ion-icon name="home" item-start></ion-icon>
+             {{customerDetail.homephone}}
+        </ion-item>
+    </ion-list>
+
+    <hr class="m-0">
+    
+    <div class="orders py-3 bg-success" >
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class=" m-0 text-white">Orders</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="listing" *ngIf="customerOrders">
+        <ion-list>
+            <ion-item *ngFor="let customerOrder of customerOrders; index as i" (click)="openOrderDetail(i)">
+                <h2><ion-icon name="pizza"></ion-icon> &nbsp; #{{customerOrder._id.substr(18,6)}}</h2>
+                <ion-row *ngIf="customerOrder.status == 'received' "><strong text-capitalize> Payment Received </strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'accepted'"><strong text-capitalize>Preparing Order</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'rejected'"><strong text-capitalize>Order Rejected</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'ontheway'"><strong text-capitalize>On the way</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'delivered'"><strong text-capitalize>Delivered</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'driveraccepted'"><strong  text-capitalize>Driver Accepted</strong></ion-row>
+                
+                
+                
+                <!-- <ion-row *ngIf="customerOrder.status == 'received'  "><strong text-capitalize> Payment Received </strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'accepted'"><strong text-capitalize>Preparing Order</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'rejected'"><strong text-capitalize>Order Rejected</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'driveraccepted'"><strong  text-capitalize>Driver Accepted</strong></ion-row>
+        <ion-row *ngIf="customerOrder.status == 'ontheway'"><strong  text-capitalize>On the way</strong></ion-row>
+                <ion-row *ngIf="customerOrder.status == 'delivered'"><strong text-capitalize>Delivered</strong></ion-row> -->
+           
+                <ion-row>
+                <ion-icon name="time"></ion-icon> &nbsp; {{customerOrder.ordertiming.create| date:'medium'}}
+                </ion-row>
+
+                <!-- <button ion-button clear item-end color="secondary">View</button> -->
+            </ion-item>
+        </ion-list>
+    </div>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Goverment Ids</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <p>{{imageURI}}</p>
+
+  <img style="object-fit:cover" [src]="base64Image | safeHtml" *ngIf="base64Image">
+
+  <button class="m-4" ion-button full color="secondary" (click)="getImage()">Add ID</button>
+
+  <img style="object-fit:cover" src="{{imageFileName}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
+
+  <button class="m-4" ion-button full (click)="uploadFile()" >Upload</button>
+
+  <ion-card *ngFor="let governmentId of governmentIds; let i = index; ">
+    <ion-icon name="trash" class="delete-img" (click)="deleteIds(governmentId)"></ion-icon>
+    <img style="object-fit:cover" src="{{imageUrl}}/{{governmentId}}" class="idImages" imageViewer />
+</ion-card>
+</ion-content>
