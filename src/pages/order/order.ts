@@ -691,6 +691,11 @@ export class OrderDetailPage {
         }
         this.threeService.updateCustomersOrdersStatus(obj).subscribe((data) => {
             if (!data.error) {
+                this.fourService.getCustomers(order.customerid).subscribe((res)=>{
+                    var obj1 = {customeremail: res.message.email, order: order};
+                    this.oneService.orderCancelMail(obj1).subscribe(() =>{});
+                })
+               
                 this.driverToken(order,order.restaurantid,"rejected");
                 this.changeFirebaseOrderStatus('rejected','any');
                 // if (typeof this.fromNoti == 'undefined' || this.fromNoti != 'noti') {

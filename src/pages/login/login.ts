@@ -128,7 +128,7 @@ export class LoginPage {
           localStorage.setItem('owner', JSON.stringify(data.data));
           this.navCtrl.setRoot(HomePage);
         } else {
-          this.getToast('Incorrect Credential');
+          this.getToast('Bad Credential');
           /*this.loginForm.reset();*/
         }
       },

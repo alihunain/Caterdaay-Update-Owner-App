@@ -131,7 +131,8 @@
           <img style="object-fit:cover" [src]="customerImage(customersOrder.profilePic)">
         </ion-avatar>
         <h2 *ngIf = "customersOrder.firstname">{{customersOrder.firstname}}</h2>
-        <h2 *ngIf = "customersOrder.firstname == undefined || customersOrder.firstname == null">{{customersOrder.email}}</h2>
+        <h2 *ngIf = "customersOrder.firstname != undefined && customersOrder.firstname != null">{{customersOrder.email}}</h2>
+        <h2 *ngIf = "customersOrder.firstname != undefined && customersOrder.firstname != null  && customersOrder.customeraddresses != undefined && customersOrder.customeraddresses != null">{{customersOrder.customeraddresses[0].phoneno}}</h2>
         <!-- <button ion-button clear item-end color="secondary">View</button> -->
       </ion-item>
 
