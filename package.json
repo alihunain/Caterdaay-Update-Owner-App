@@ -59,7 +59,7 @@
     "ionic2-rating": "^1.2.2",
     "ionicons": "3.0.0",
     "me.tonny.cordova.plugins.multidex": "https://github.com/jwall149/cordova-multidex",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.26"
